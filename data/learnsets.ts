@@ -550,7 +550,6 @@ export const Learnsets: {[k: string]: LearnsetData} = {
 			temperflare: ["9M"],
 			terablast: ["9M"],
 			thunderpunch: ["9M", "8M", "8V", "7T", "6T", "5T", "4T"],
-			toxic: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			weatherball: ["9M", "8M"],
 			willowisp: ["9M", "8M", "8V", "7M", "6M", "5M", "4M"],
 			workup: ["8M", "7M"],
@@ -682,7 +681,6 @@ export const Learnsets: {[k: string]: LearnsetData} = {
 			temperflare: ["9M"],
 			terablast: ["9M"],
 			thunderpunch: ["9M", "8M", "8V", "7T", "6T", "5T", "4T"],
-			toxic: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			twister: ["4T"],
 			weatherball: ["9M", "8M"],
 			willowisp: ["9M", "8M", "8V", "7M", "6M", "5M", "4M"],
@@ -1165,6 +1163,7 @@ export const Learnsets: {[k: string]: LearnsetData} = {
 			uturn: ["8M", "8V", "7M", "6M", "5M", "4M"],
 			venoshock: ["8M", "7M", "6M", "5M"],
 			whirlwind: ["8L20", "8V", "7L29", "7V", "6L22", "5L22", "4L22", "3L23"],
+			fierydance: ["9L1"]
 		},
 		eventData: [
 			{generation: 3, level: 30, moves: ["morningsun", "psychic", "sleeppowder", "aerialace"]},
@@ -1288,6 +1287,9 @@ export const Learnsets: {[k: string]: LearnsetData} = {
 			uturn: ["8V", "7M", "6M", "5M", "4M"],
 			venoshock: ["7M", "7L23", "6M", "5M"],
 			xscissor: ["8V", "7M", "6M", "5M", "4M"],
+			rocktomb: ["9L1"]
+			crosspoison: ["9L1"]
+			megahorn: ["9L1"]
 		},
 		eventData: [
 			{generation: 3, level: 30, moves: ["batonpass", "sludgebomb", "twineedle", "swordsdance"]},
