@@ -216,6 +216,8 @@ export const Learnsets: {[k: string]: LearnsetData} = {
 			weatherball: ["9M", "8M"],
 			workup: ["8M", "7M"],
 			worryseed: ["9L40", "8L40", "7T", "7L36", "6T", "6L36", "5T", "5L36", "4T", "4L36"],
+			matchagotcha: ["9L1"],
+			sludgewave: ["9L1"],
 		},
 	},
 	venusaur: {
@@ -315,6 +317,9 @@ export const Learnsets: {[k: string]: LearnsetData} = {
 			weatherball: ["9M", "8M"],
 			workup: ["8M", "7M"],
 			worryseed: ["9L44", "8L44", "7T", "7L39", "6T", "6L39", "5T", "5L39", "4T", "4L39"],
+			matchagotcha: ["9L1"],
+			chloroblast: ["9L1"],
+			sludgewave: ["9L1"],
 		},
 		eventData: [
 			{generation: 6, level: 100, isHidden: true, moves: ["solarbeam", "frenzyplant", "synthesis", "grasspledge"], pokeball: "cherishball"},
@@ -549,6 +554,7 @@ export const Learnsets: {[k: string]: LearnsetData} = {
 			weatherball: ["9M", "8M"],
 			willowisp: ["9M", "8M", "8V", "7M", "6M", "5M", "4M"],
 			workup: ["8M", "7M"],
+			uturn: ["9L1"],
 		},
 	},
 	charizard: {
@@ -682,6 +688,7 @@ export const Learnsets: {[k: string]: LearnsetData} = {
 			willowisp: ["9M", "8M", "8V", "7M", "6M", "5M", "4M"],
 			wingattack: ["8V", "7L1", "7V", "6L36", "5L36", "4L36", "3L36", "3S0"],
 			workup: ["8M", "7M"],
+			uturn: ["9L1"],
 		},
 		eventData: [
 			{generation: 3, level: 70, moves: ["wingattack", "slash", "dragonrage", "firespin"], pokeball: "pokeball"},
