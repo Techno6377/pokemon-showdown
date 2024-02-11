@@ -30850,9 +30850,7 @@ export const Learnsets: {[k: string]: LearnsetData} = {
 			terablast: ["9M"],
 			willowisp: ["9M", "7M", "6M", "5M", "4M"],
 			yawn: ["9L1", "7L1", "6L1", "5L1", "4L1", "3L1"],
-			powergem: ["9L1"],
 			scald: ["9L1"],
-			scorchingsands: ["9L1"],
 		},
 		eventData: [
 			{generation: 3, level: 38, moves: ["refresh", "heatwave", "earthquake", "flamethrower"]},
