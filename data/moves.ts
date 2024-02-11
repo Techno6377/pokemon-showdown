@@ -534,7 +534,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	armthrust: {
 		num: 292,
 		accuracy: 100,
-		basePower: 20,
+		basePower: 25,
 		category: "Physical",
 		name: "Arm Thrust",
 		pp: 20,
@@ -5730,7 +5730,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		name: "Flame Burst",
 		pp: 15,
 		priority: 0,
-		flags: {protect: 1, mirror: 1},
+		flags: {protect: 1, pulse: 1, mirror: 1},
 		onHit(target, source, move) {
 			for (const ally of target.adjacentAllies()) {
 				this.damage(ally.baseMaxhp / 16, ally, source, this.dex.conditions.get('Flame Burst'));
@@ -17563,7 +17563,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		name: "Sludge Bomb",
 		pp: 10,
 		priority: 0,
-		flags: {bullet: 1, protect: 1, mirror: 1},
+		flags: {bullet: 1, protect: 1, pulse: 1, mirror: 1},
 		secondary: {
 			chance: 30,
 			status: 'psn',
@@ -21363,7 +21363,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	waterpulse: {
 		num: 352,
 		accuracy: 100,
-		basePower: 60,
+		basePower: 70,
 		category: "Special",
 		name: "Water Pulse",
 		pp: 20,
