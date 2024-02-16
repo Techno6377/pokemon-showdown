@@ -427,7 +427,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		num: 895,
 		accuracy: 100,
 		basePower: 70,
-		category: "Physical",
+		category: "Special",
 		name: "Aqua Cutter",
 		pp: 20,
 		priority: 0,
@@ -3985,8 +3985,8 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	doublehit: {
 		num: 458,
-		accuracy: 90,
-		basePower: 35,
+		accuracy: 100,
+		basePower: 40,
 		category: "Physical",
 		name: "Double Hit",
 		pp: 10,
@@ -4012,7 +4012,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {contact: 1, protect: 1, mirror: 1, punch: 1},
 		multihit: 2,
 		secondary: {
-			chance: 30,
+			chance: 10,
 			volatileStatus: 'flinch',
 		},
 		target: "normal",
@@ -4024,7 +4024,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	doublekick: {
 		num: 24,
 		accuracy: 100,
-		basePower: 30,
+		basePower: 40,
 		category: "Physical",
 		name: "Double Kick",
 		pp: 30,
@@ -14008,39 +14008,13 @@ export const Moves: {[moveid: string]: MoveData} = {
 	pollenpuff: {
 		num: 676,
 		accuracy: 100,
-		basePower: 90,
+		basePower: 80,
 		category: "Special",
 		name: "Pollen Puff",
 		pp: 15,
 		priority: 0,
-		flags: {bullet: 1, protect: 1, mirror: 1, allyanim: 1},
-		onTryHit(target, source, move) {
-			if (source.isAlly(target)) {
-				move.basePower = 0;
-				move.infiltrates = true;
-			}
-		},
-		onTryMove(source, target, move) {
-			if (source.isAlly(target) && source.volatiles['healblock']) {
-				this.attrLastMove('[still]');
-				this.add('cant', source, 'move: Heal Block', move);
-				return false;
-			}
-		},
-		onHit(target, source, move) {
-			if (source.isAlly(target)) {
-				if (!this.heal(Math.floor(target.baseMaxhp * 0.5))) {
-					if (target.volatiles['healblock'] && target.hp !== target.maxhp) {
-						this.attrLastMove('[still]');
-						// Wrong error message, correct one not supported yet
-						this.add('cant', source, 'move: Heal Block', move);
-					} else {
-						this.add('-immune', target);
-					}
-					return this.NOT_FAIL;
-				}
-			}
-		},
+		flags: {bullet: 1, protect: 1, mirror: 1, heal: 1},
+		drain: [1, 2],
 		secondary: null,
 		target: "normal",
 		type: "Bug",
@@ -14370,13 +14344,13 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	precipiceblades: {
 		num: 619,
-		accuracy: 95,
-		basePower: 120,
+		accuracy: 100,
+		basePower: 90,
 		category: "Physical",
 		name: "Precipice Blades",
 		pp: 10,
 		priority: 0,
-		flags: {protect: 1, mirror: 1, nonsky: 1},
+		flags: {protect: 1, mirror: 1, nonsky: 1, slicing: 1},
 		target: "allAdjacentFoes",
 		type: "Ground",
 		contestType: "Cool",
@@ -14659,7 +14633,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	psychoboost: {
 		num: 354,
-		accuracy: 90,
+		accuracy: 100,
 		basePower: 140,
 		category: "Special",
 		name: "Psycho Boost",
@@ -20984,7 +20958,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	uproar: {
 		num: 253,
 		accuracy: 100,
-		basePower: 90,
+		basePower: 120,
 		category: "Special",
 		name: "Uproar",
 		pp: 10,
@@ -21524,7 +21498,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	whirlpool: {
 		num: 250,
-		accuracy: 85,
+		accuracy: 90,
 		basePower: 35,
 		category: "Special",
 		name: "Whirlpool",

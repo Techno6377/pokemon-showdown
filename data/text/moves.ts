@@ -4716,8 +4716,8 @@ export const MovesText: {[k: string]: MoveText} = {
 	},
 	pollenpuff: {
 		name: "Pollen Puff",
-		desc: "If the target is an ally, this move restores 1/2 of its maximum HP, rounded down, instead of dealing damage.",
-		shortDesc: "If the target is an ally, heals 50% of its max HP.",
+		desc: "The user recovers 1/2 the HP lost by the target, rounded half up. If Big Root is held by the user, the HP recovered is 1.3x normal, rounded half down.",
+		shortDesc: "User recovers 50% of the damage dealt.",
 	},
 	poltergeist: {
 		name: "Poltergeist",

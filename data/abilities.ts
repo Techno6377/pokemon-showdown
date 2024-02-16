@@ -5507,9 +5507,9 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			if (pokemon.baseSpecies.baseSpecies !== 'Darmanitan' || pokemon.transformed) {
 				return;
 			}
-			if (pokemon.hp <= pokemon.maxhp / 2 && !['Zen', 'Galar-Zen'].includes(pokemon.species.forme)) {
+			if (pokemon.hp <= pokemon.maxhp / 1 && !['Zen', 'Galar-Zen'].includes(pokemon.species.forme)) {
 				pokemon.addVolatile('zenmode');
-			} else if (pokemon.hp > pokemon.maxhp / 2 && ['Zen', 'Galar-Zen'].includes(pokemon.species.forme)) {
+			} else if (pokemon.hp > pokemon.maxhp / 1 && ['Zen', 'Galar-Zen'].includes(pokemon.species.forme)) {
 				pokemon.addVolatile('zenmode'); // in case of base Darmanitan-Zen
 				pokemon.removeVolatile('zenmode');
 			}
