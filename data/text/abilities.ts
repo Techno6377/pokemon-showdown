@@ -2225,8 +2225,8 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	zenmode: {
 		name: "Zen Mode",
-		desc: "If this Pokemon is a Darmanitan or Galarian Darmanitan, it changes to Zen Mode if it has 1/2 or less of its maximum HP at the end of a turn. If Darmanitan's HP is above 1/2 of its maximum HP at the end of a turn, it changes back to Standard Mode.",
-		shortDesc: "If Darmanitan, at end of turn changes Mode to Standard if > 1/2 max HP, else Zen.",
+		desc: "If this Pokemon is a Darmanitan or Galarian Darmanitan, it changes to Zen Mode at the end of a turn.",
+		shortDesc: "Becomes Zen Mode at the end of Darmanitan's first turn on the field.",
 		gen7: {
 			desc: "If this Pokemon is a Darmanitan, it changes to Zen Mode if it has 1/2 or less of its maximum HP at the end of a turn. If Darmanitan's HP is above 1/2 of its maximum HP at the end of a turn, it changes back to Standard Mode.",
 		},

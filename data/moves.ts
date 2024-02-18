@@ -9657,11 +9657,6 @@ export const Moves: {[moveid: string]: MoveData} = {
 		pp: 10,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1, punch: 1},
-		self: {
-			boosts: {
-				spe: -1,
-			},
-		},
 		secondary: null,
 		target: "normal",
 		type: "Ice",
@@ -19065,7 +19060,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		name: "Sucker Punch",
 		pp: 5,
 		priority: 1,
-		flags: {contact: 1, protect: 1, mirror: 1},
+		flags: {contact: 1, protect: 1, punch: 1, mirror: 1},
 		onTry(source, target) {
 			const action = this.queue.willMove(target);
 			const move = action?.choice === 'move' ? action.move : null;
