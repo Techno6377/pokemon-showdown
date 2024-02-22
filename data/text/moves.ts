@@ -1470,8 +1470,8 @@ export const MovesText: {[k: string]: MoveText} = {
 	},
 	doubleironbash: {
 		name: "Double Iron Bash",
-		desc: "Hits twice. If the first hit breaks the target's substitute, it will take damage for the second hit. Has a 30% chance to make the target flinch.",
-		shortDesc: "Hits twice. 30% chance to make the target flinch.",
+		desc: "Hits twice. If the first hit breaks the target's substitute, it will take damage for the second hit. Has a 10% chance to make the target flinch.",
+		shortDesc: "Hits twice. 10% chance to make the target flinch.",
 	},
 	doublekick: {
 		name: "Double Kick",
