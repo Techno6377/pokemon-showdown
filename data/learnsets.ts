@@ -7306,7 +7306,6 @@ export const Learnsets: {[k: string]: LearnsetData} = {
 			aerialace: ["9M", "7M", "6M", "5M", "4M", "3M"],
 			agility: ["9M"],
 			amnesia: ["9M", "8M", "7E", "7V", "6E", "5E", "4E", "3E"],
-			assist: ["7E", "6E", "5E", "4E", "4S5", "3E"],
 			assurance: ["9L24", "8M", "8L24", "7L41", "6L41", "5L41", "4L41"],
 			attract: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
 			bide: ["7V"],
@@ -7420,7 +7419,7 @@ export const Learnsets: {[k: string]: LearnsetData} = {
 			{generation: 3, level: 10, gender: "M", moves: ["scratch", "growl", "bite"], pokeball: "pokeball"},
 			{generation: 3, level: 22, moves: ["sing", "slash", "payday", "bite"]},
 			{generation: 4, level: 21, gender: "F", nature: "Jolly", abilities: ["pickup"], moves: ["bite", "fakeout", "furyswipes", "screech"], pokeball: "cherishball"},
-			{generation: 4, level: 10, gender: "M", nature: "Jolly", abilities: ["pickup"], moves: ["fakeout", "payday", "assist", "scratch"], pokeball: "cherishball"},
+			{generation: 4, level: 10, gender: "M", nature: "Jolly", abilities: ["pickup"], moves: ["fakeout", "payday", "waterpulse", "scratch"], pokeball: "cherishball"},
 			{generation: 5, level: 15, gender: "M", abilities: ["pickup"], moves: ["furyswipes", "sing", "nastyplot", "snatch"], pokeball: "cherishball"},
 			{generation: 6, level: 20, abilities: ["pickup"], moves: ["happyhour", "screech", "bite", "fakeout"], pokeball: "cherishball"},
 		],
@@ -7434,7 +7433,6 @@ export const Learnsets: {[k: string]: LearnsetData} = {
 			aerialace: ["9M", "7M"],
 			agility: ["9M"],
 			amnesia: ["9M", "8M", "7E"],
-			assist: ["7E"],
 			assurance: ["9L24", "8M", "8L24", "7L41"],
 			attract: ["8M", "7M"],
 			bite: ["9L16", "8L16", "8V", "7L6"],
@@ -13937,7 +13935,6 @@ export const Learnsets: {[k: string]: LearnsetData} = {
 	drowzee: {
 		learnset: {
 			allyswitch: ["7T"],
-			assist: ["7E", "6E", "5E", "4E", "3E"],
 			attract: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			barrier: ["7E", "7V", "6E", "5E", "4E", "3E"],
 			bellydrum: ["3S0"],
@@ -24414,7 +24411,6 @@ export const Learnsets: {[k: string]: LearnsetData} = {
 		learnset: {
 			amnesia: ["9M", "9L36", "7L36", "7V", "6L36", "5L36", "4L36", "3L49"],
 			aquatail: ["7T", "6T", "5T", "4T"],
-			assist: ["7E", "6E", "5E", "4E", "3E"],
 			attract: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			babydolleyes: ["9E", "7E"],
 			batonpass: ["9M", "9L39", "7L39", "6L39", "5L39", "4L39"],
@@ -29668,7 +29664,6 @@ export const Learnsets: {[k: string]: LearnsetData} = {
 		learnset: {
 			aerialace: ["9M", "7M", "6M", "5M", "4M", "3M"],
 			agility: ["9M", "9L48", "8M", "8L48", "7L20", "7V", "6L20", "5L20", "4L24", "3L36"],
-			assist: ["7E", "6E", "5E", "4E"],
 			attract: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
 			avalanche: ["9M", "8M", "7E", "6E", "5E", "4M"],
 			beatup: ["9L42", "8M", "8L42", "7L28", "7V", "6L28", "5L28", "4L38", "3L57"],
@@ -38085,7 +38080,6 @@ export const Learnsets: {[k: string]: LearnsetData} = {
 	},
 	skitty: {
 		learnset: {
-			assist: ["7L31", "6L22", "5L22", "4L18", "3L19"],
 			attract: ["7M", "7L10", "6M", "6L8", "5M", "5L8", "4M", "4L4", "3M", "3L7", "3S2"],
 			batonpass: ["7E", "6E", "5E", "4E", "3E"],
 			blizzard: ["7M", "6M", "5M", "4M", "3M"],
@@ -40828,7 +40822,6 @@ export const Learnsets: {[k: string]: LearnsetData} = {
 	},
 	spinda: {
 		learnset: {
-			assist: ["7E", "6E", "5E", "4E", "3E"],
 			attract: ["7M", "6M", "5M", "4M", "3M"],
 			batonpass: ["7E", "6E", "5E", "4E", "3E"],
 			bodyslam: ["3T"],
@@ -47037,7 +47030,6 @@ export const Learnsets: {[k: string]: LearnsetData} = {
 			acrobatics: ["9M", "9L39", "7M", "7L39", "6M", "6L39", "5M", "5L39"],
 			aerialace: ["7M", "6M", "5M", "4M"],
 			agility: ["9M"],
-			assist: ["7E", "6E", "5E", "4E"],
 			attract: ["7M", "6M", "5M", "4M"],
 			blazekick: ["7E", "6E", "5E", "4E"],
 			brickbreak: ["9M", "7M", "6M", "5M", "4M"],
@@ -50117,7 +50109,6 @@ export const Learnsets: {[k: string]: LearnsetData} = {
 	glameow: {
 		learnset: {
 			aerialace: ["7M", "6M", "5M", "4M"],
-			assist: ["7L29", "6L29", "5L29", "4L29"],
 			assurance: ["7E", "6E", "5E", "5D", "4E"],
 			attract: ["7M", "7L44", "6M", "6L44", "5M", "5L44", "4M", "4L45"],
 			bite: ["7E", "6E", "5E", "4E"],
@@ -50192,7 +50183,6 @@ export const Learnsets: {[k: string]: LearnsetData} = {
 	purugly: {
 		learnset: {
 			aerialace: ["7M", "6M", "5M", "4M"],
-			assist: ["7L29", "6L29", "5L29", "4L29"],
 			attract: ["7M", "7L52", "6M", "6L52", "5M", "5L52", "4M", "4L53"],
 			bodyslam: ["7L45", "6L45", "5L45", "4L45"],
 			bulldoze: ["7M", "6M", "5M"],
@@ -55256,7 +55246,6 @@ export const Learnsets: {[k: string]: LearnsetData} = {
 	purrloin: {
 		learnset: {
 			aerialace: ["7M", "6M", "5M"],
-			assist: ["7L6", "6L6", "5L6"],
 			assurance: ["8M", "8L21", "7L28", "6L28", "5L28"],
 			attract: ["8M", "7M", "6M", "5M"],
 			batonpass: ["8M"],
@@ -55333,7 +55322,6 @@ export const Learnsets: {[k: string]: LearnsetData} = {
 	liepard: {
 		learnset: {
 			aerialace: ["7M", "6M", "5M"],
-			assist: ["7L1", "6L1", "5L1"],
 			assurance: ["8M", "8L23", "7L31", "6L31", "5L31"],
 			attract: ["8M", "7M", "6M", "5M"],
 			batonpass: ["8M"],
@@ -69891,7 +69879,6 @@ export const Learnsets: {[k: string]: LearnsetData} = {
 	espurr: {
 		learnset: {
 			allyswitch: ["8M", "7T"],
-			assist: ["7E", "6E"],
 			attract: ["8M", "7M", "6M"],
 			barrier: ["7E", "6E"],
 			calmmind: ["9M", "8M", "7M", "6M"],
@@ -77002,9 +76989,9 @@ export const Learnsets: {[k: string]: LearnsetData} = {
 			wonderroom: ["8M", "7T"],
 			worryseed: ["7T"],
 			calmmind: ["9L1"],
-			aromatherapy: ["9L1"],
 			trickroom: ["9L1"],
 			mysticalfire: ["9L1"],
+			sparklyswirl: ["9L1"],
 		},
 	},
 	salandit: {
@@ -90435,6 +90422,7 @@ export const Learnsets: {[k: string]: LearnsetData} = {
 			toxicspikes: ["9M"],
 			venoshock: ["9M", "9L22"],
 			return: ["9L1"],
+			corrosivegas: ["9L1"],
 		},
 	},
 	glimmora: {
@@ -90487,6 +90475,7 @@ export const Learnsets: {[k: string]: LearnsetData} = {
 			toxicspikes: ["9M", "9L1"],
 			venoshock: ["9M", "9L22"],
 			return: ["9L1"],
+			corrosivegas: ["9L1"],
 		},
 	},
 	shroodle: {
