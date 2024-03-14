@@ -49213,6 +49213,7 @@ export const Learnsets: {[k: string]: LearnsetData} = {
 			zingzap: ["9L1"],
 			earthquake: ["9L1"],
 			zippyzap: ["9L1"],
+			supercellslam: ["9L1"],
 		},
 		eventData: [
 			{generation: 6, level: 50, nature: "Impish", ivs: {hp: 31, atk: 31, def: 31, spa: 14, spd: 31, spe: 31}, isHidden: true, moves: ["nuzzle", "superfang", "followme", "protect"], pokeball: "cherishball"},
@@ -62858,6 +62859,7 @@ export const Learnsets: {[k: string]: LearnsetData} = {
 			earthquake: ["9L1"],
 			superpower: ["9L1"],
 			zingzap: ["9L1"],
+			supercellslam: ["9L1"],
 		},
 		encounters: [
 			{generation: 6, level: 30},
@@ -62926,6 +62928,7 @@ export const Learnsets: {[k: string]: LearnsetData} = {
 			earthquake: ["9L1"],
 			superpower: ["9L1"],
 			zingzap: ["9L1"],
+			supercellslam: ["9L1"],
 		},
 	},
 	tynamo: {
@@ -81358,6 +81361,7 @@ export const Learnsets: {[k: string]: LearnsetData} = {
 			wildcharge: ["8M", "8L72", "7M", "7L36"],
 			workup: ["8M", "7M"],
 			zenheadbutt: ["9L1"],
+			supercellslam: ["9L1"],
 		},
 		eventData: [
 			{generation: 7, level: 50, moves: ["plasmafists", "thunderpunch", "closecombat", "thunder"], pokeball: "cherishball"},
