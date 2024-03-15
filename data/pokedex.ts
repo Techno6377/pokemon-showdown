@@ -15936,7 +15936,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		baseSpecies: "Morpeko",
 		forme: "Hangry",
 		types: ["Electric", "Dark"],
-		baseStats: {hp: 58, atk: 95, def: 58, spa: 70, spd: 58, spe: 97},
+		baseStats: {hp: 58, atk: 95, def: 58, spa: 70, spd: 58, spe: 107},
 		abilities: {0: "Hunger Switch"},
 		heightm: 0.3,
 		weightkg: 3,
