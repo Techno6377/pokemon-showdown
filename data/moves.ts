@@ -19107,7 +19107,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	supercellslam: {
 		num: 916,
 		accuracy: 100,
-		basePower: 130,
+		basePower: 120,
 		category: "Physical",
 		name: "Supercell Slam",
 		pp: 15,
