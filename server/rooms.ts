@@ -2039,7 +2039,7 @@ export class GameRoom extends BasicRoom {
             0;
         
         if (battle.replaySaved) {
-            connection.popup(`Replay has already been saved! Replay is at https://replay.thetrainercorner.net/ttc/${id}`);
+            connection.popup(`Replay has already been saved! Replay is at https://replay.thetrainercorner.net/p2/${id}`);
             return;
         }
         battle.replaySaved = true;
