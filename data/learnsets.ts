@@ -90716,6 +90716,7 @@ export const Learnsets: {[k: string]: LearnsetData} = {
 			return: ["9L1"],
 			healbell: ["9L1"],
 			flareblitz: ["9L1"],
+			recover: ["9L1"],
 		},
 	},
 	maschiff: {
