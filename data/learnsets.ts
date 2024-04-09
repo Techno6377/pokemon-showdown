@@ -88681,6 +88681,7 @@ export const Learnsets: {[k: string]: LearnsetData} = {
 			whirlpool: ["9M"],
 			zenheadbutt: ["9M"],
 			return: ["9L1"],
+			knockoff: ["9L1"],
 		},
 		eventData: [
 			{generation: 9, level: 50, gender: "F", nature: "Adamant", ivs: {hp: 31, atk: 31, def: 31, spa: 17, spd: 31, spe: 31}, moves: ["jetpunch", "wavecrash", "haze", "protect"], pokeball: "cherishball"},
