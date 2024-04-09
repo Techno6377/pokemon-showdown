@@ -28,7 +28,6 @@ const LAST_BATTLE_WRITE_THROTTLE = 10;
 
 const RETRY_AFTER_LOGIN = null;
 
-import axios from "axios";
 import {FS, Utils, Streams} from '../lib';
 import {RoomSection, RoomSections} from './chat-commands/room-settings';
 import {QueuedHunt} from './chat-plugins/scavengers';
@@ -180,6 +179,12 @@ export abstract class BasicRoom {
 	 */
 	battle: RoomBattle | null;
 	/**
+	 * The room's current best-of set. Best-of sets are a type of RoomGame, so in best-of set
+	 * rooms (which can only be `GameRoom`s), `this.bestof === this.game`.
+	 * In all other rooms, `this.bestof` is `null`.
+	 */
+	bestOf: BestOfGame | null;
+	/**
 	 * The game room's current tournament. If the room is a battle room whose
 	 * battle is part of a tournament, `this.tour === this.parent.game`.
 	 * In all other rooms, `this.tour` is `null`.
@@ -235,6 +240,7 @@ export abstract class BasicRoom {
 		this.muteQueue = [];
 
 		this.battle = null;
+		this.bestOf = null;
 		this.game = null;
 		this.subGame = null;
 		this.tour = null;
@@ -825,7 +831,7 @@ export abstract class BasicRoom {
 			}
 		}
 
-		if (this.battle) {
+		if (this.battle || this.bestOf) {
 			if (privacy) {
 				if (this.roomid.endsWith('pw')) return true;
 
@@ -844,6 +850,7 @@ export abstract class BasicRoom {
 				this.rename(this.title, this.roomid.slice(0, lastDashIndex) as RoomID);
 			}
 		}
+		this.bestOf?.setPrivacyOfGames(privacy);
 	}
 	validateSection(section: string) {
 		const target = toID(section);
@@ -1890,6 +1897,7 @@ export class GameRoom extends BasicRoom {
 	 */
 	rated: number;
 	declare battle: RoomBattle | null;
+	declare bestOf: BestOfGame | null;
 	declare game: RoomGame;
 	modchatUser: string;
 	constructor(roomid: RoomID, title: string, options: Partial<RoomSettings & RoomBattleOptions>) {
@@ -1916,6 +1924,7 @@ export class GameRoom extends BasicRoom {
 		this.rated = options.rated === true ? 1 : options.rated || 0;
 
 		this.battle = null;
+		this.bestOf = null;
 		this.game = null!;
 
 		this.modchatUser = '';
@@ -1998,81 +2007,110 @@ export class GameRoom extends BasicRoom {
 	 * That's why this function requires a connection. For details, see the top
 	 * comment inside this function.
 	 */
-	async uploadReplay(user: User, connection: Connection, options?: 'forpunishment' | 'silent') {
-        // The reason we don't upload directly to the loginserver, unlike every
-        // other interaction with the loginserver, is because it takes so much
-        // bandwidth that it can get identified as a DoS attack by PHP, Apache, or
-        // Cloudflare, and blocked.
+	async uploadReplay(user?: User, connection?: Connection, options?: 'forpunishment' | 'silent' | 'auto') {
+		// The reason we don't upload directly to the loginserver, unlike every
+		// other interaction with the loginserver, is because it takes so much
+		// bandwidth that it can get identified as a DoS attack by PHP, Apache, or
+		// Cloudflare, and blocked.
 
-        // While I'm sure this is configurable, it's a huge pain, and getting it
-        // wrong, especially while migrating infrastructure, leads to everything
-        // being unusable and panic while we figure out how to unblock our servers
-        // from each other. It's just easier to "spread out" the bandwidth.
+		// While I'm sure this is configurable, it's a huge pain, and getting it
+		// wrong, especially while migrating infrastructure, leads to everything
+		// being unusable and panic while we figure out how to unblock our servers
+		// from each other. It's just easier to "spread out" the bandwidth.
 
-        // TODO: My ideal long-term fix would be to just have a database (probably
-        // Postgres) shared between client and server, acting as both the server's
-        // battle logs as well as the client's replay database, which both client
-        // and server have write access to.
+		// TODO: My ideal long-term fix would be to just have a database (probably
+		// Postgres) shared between client and server, acting as both the server's
+		// battle logs as well as the client's replay database, which both client
+		// and server have write access to.
 
-        const battle = this.battle;
-        if (!battle) return;
+		const battle = this.battle;
+		if (!battle) return;
 
-        // retrieve spectator log (0) if there are privacy concerns
-        const format = Dex.formats.get(this.format, true);
+		// retrieve spectator log (0) if there are privacy concerns
+		const format = Dex.formats.get(this.format, true);
 
-        // custom games always show full details
-        // random-team battles show full details if the battle is ended
-        // otherwise, don't show full details
-        let hideDetails = !format.id.includes('customgame');
-        if (format.team && battle.ended) hideDetails = false;
+		// custom games always show full details
+		// random-team battles show full details if the battle is ended
+		// otherwise, don't show full details
+		let hideDetails = !format.id.includes('customgame');
+		if (format.team && battle.ended) hideDetails = false;
 
-        const log = this.getLog(hideDetails ? 0 : -1);
-        let rating: number | undefined;
-        if (battle.ended && this.rated) rating = this.rated;
-        let {id, password} = this.getReplayData();
-        const silent = options === 'forpunishment' || options === 'silent' || options === 'auto';
-        if (silent) connection = undefined;
-        const isPrivate = this.settings.isPrivate || this.hideReplay;
-        const hidden = options === 'forpunishment' || options === 'auto' ? 10 :
-            (this as any).unlistReplay ? 2 :
-            isPrivate ? 1 :
-            0;
-        
-        if (battle.replaySaved) {
-            connection.popup(`Replay has already been saved! Replay is at https://replay.thetrainercorner.net/p2/${id}`);
-            return;
-        }
-        battle.replaySaved = true;
+		const log = this.getLog(hideDetails ? 0 : -1);
+		let rating: number | undefined;
+		if (battle.ended && this.rated) rating = this.rated;
+		let {id, password} = this.getReplayData();
+		const silent = options === 'forpunishment' || options === 'silent' || options === 'auto';
+		if (silent) connection = undefined;
+		const isPrivate = this.settings.isPrivate || this.hideReplay;
+		const hidden = options === 'forpunishment' || options === 'auto' ? 10 :
+			(this as any).unlistReplay ? 2 :
+			isPrivate ? 1 :
+			0;
 
-        // // If we have a direct connetion to a Replays database, just upload the replay
-        // // directly.
-        const url = `https://replay.thetrainercorner.net/p2/${id}`;
-        connection.popup(`Your replay has been saved. You can find it at ${url}`);
-        await axios.post('https://replay.thetrainercorner.net/p2', {
-                id: id,
-                log: log.replace(/\//g, '\\/'),
-                players: battle.players.map(p => p.name),
-                format: format.name,
-                rating: rating || "null",
-                private: false,
-                password: "",
-                inputlog: battle.inputLog?.join('\n') || "null",
-                uploadtime: Math.trunc(Date.now() / 1000),
-        });
+		if (isPrivate && hidden === 10) {
+			password = Replays.generatePassword();
+		}
+		if (battle.replaySaved !== true && hidden === 10) {
+			battle.replaySaved = 'auto';
+		} else {
+			battle.replaySaved = true;
+		}
 
-        // Otherwise, (we're probably a side server), upload the replay through LoginServer
+		// If we have a direct connetion to a Replays database, just upload the replay
+		// directly.
 
-        const [result] = await LoginServer.request('addreplay', {
-            id,
-            log,
-            players: battle.players.map(p => p.name).join(','),
-            format: format.name,
-            rating, // will probably do nothing
-            hidden,
-            inputlog: battle.inputLog?.join('\n') || undefined,
-            password,
-        });
-    }
+		if (Replays.db) {
+			const idWithServer = Config.serverid === 'showdown' ? id : `${Config.serverid}-${id}`;
+			try {
+				const fullid = await Replays.add({
+					id: idWithServer,
+					log,
+					players: battle.players.map(p => p.name),
+					format: format.name,
+					rating: rating || null,
+					private: hidden,
+					password,
+					inputlog: battle.inputLog?.join('\n') || null,
+					uploadtime: Math.trunc(Date.now() / 1000),
+				});
+				const url = `https://${Config.routes.replays}/${fullid}`;
+				connection?.popup(
+					`|html|<p>Your replay has been uploaded! It's available at:</p><p> ` +
+					`<a class="no-panel-intercept" href="${url}" target="_blank">${url}</a> ` +
+					`<copytext value="${url}">Copy</copytext>`
+				);
+			} catch (e) {
+				connection?.popup(`Your replay could not be saved: ${e}`);
+				throw e;
+			}
+			return;
+		}
+
+		// Otherwise, (we're probably a side server), upload the replay through LoginServer
+
+		const [result] = await LoginServer.request('addreplay', {
+			id,
+			log,
+			players: battle.players.map(p => p.name).join(','),
+			format: format.name,
+			rating, // will probably do nothing
+			hidden: hidden === 0 ? '' : hidden,
+			inputlog: battle.inputLog?.join('\n') || undefined,
+			password,
+		});
+		if (result?.errorip) {
+			connection?.popup(`This server's request IP ${result.errorip} is not a registered server.`);
+			return;
+		}
+
+		const fullid = result?.replayid;
+		const url = `https://${Config.routes.replays}/${fullid}`;
+		connection?.popup(
+			`|html|<p>Your replay has been uploaded! It's available at:</p><p> ` +
+			`<a class="no-panel-intercept" href="${url}" target="_blank">${url}</a> ` +
+			`<copytext value="${url}">Copy</copytext>`
+		);
+	}
 
 	getReplayData() {
 		if (!this.roomid.endsWith('pw')) return {id: this.roomid.slice(7)};
@@ -2083,7 +2121,14 @@ export class GameRoom extends BasicRoom {
 }
 
 function getRoom(roomid?: string | BasicRoom) {
-	if (typeof roomid === 'string') return Rooms.rooms.get(roomid as RoomID);
+	if (typeof roomid === 'string') {
+		// Accounts for private battles that were made public
+		if ((roomid.startsWith('battle-') || roomid.startsWith('game-bestof')) && roomid.endsWith('pw')) {
+			const room = Rooms.rooms.get(roomid.slice(0, roomid.lastIndexOf('-')) as RoomID);
+			if (room) return room;
+		}
+		return Rooms.rooms.get(roomid as RoomID);
+	}
 	return roomid as Room;
 }
 
@@ -2194,12 +2239,17 @@ export const Rooms = {
 		roomid ||= Rooms.global.prepBattleRoom(options.format);
 		options.isPersonal = true;
 		const room = Rooms.createGameRoom(roomid, roomTitle, options);
+		let game: RoomBattle | BestOfGame;
 		if (options.isBestOfSubBattle || !isBestOf) {
-			const battle = new Rooms.RoomBattle(room, options);
-			room.game = battle;
-			battle.checkPrivacySettings(options);
+			game = new RoomBattle(room, options);
 		} else {
-			room.game = new BestOfGame(room, options);
+			game = new BestOfGame(room, options);
+		}
+		room.game = game;
+		if (options.isBestOfSubBattle && room.parent) {
+			room.setPrivate(room.parent.settings.isPrivate || false);
+		} else {
+			game.checkPrivacySettings(options);
 		}
 
 		for (const p of players) {
